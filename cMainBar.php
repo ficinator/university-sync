@@ -10,17 +10,9 @@ class cMainBar {
         $strRet = "";
         if (isset ($_SESSION['login'])) {
             $strRet .= "<div id=\"mainBar\">";
-            $strRet .= "<a class=\"title\" href=\"?page=home\">
-                            <div id=\"titleBar\">
-                                <img src=\"./images/logo_154x60px\" class=\"titleLogo\">
-                            </div>";        // titleBar
-            $strRet .= "</a>";
-            $strRet .= "<div id=\"mainSearch\" >";
-            $strRet .= "<input  placeholder=\"rýchle vyhľadávanie\" type=\"text\" name=\"searchBox\" class=\"mainSearchBox\">";
-            $strRet .= "<input type=\"hidden\" value=\"{$this->user['id']}\" id=\"userId\"/>"; // premenna do Javascriptu
-            $strRet .= "<div id=\"mainResults\">";                                                                        
-            $strRet .= "</div>";    //mainResults
-            $strRet .= "</div>";    //mainSearch      
+            $strRet .= "<a class=\"title\" href=\"?page=home\">";
+            $strRet .= '<h1 class="main-title">University Sync</h1>';
+            $strRet .= "</a>"; 
             $strRet .= "<div id=\"myGroups\">";
             $strRet .= "<div id=\"myGroupsTitle\">";
             $strRet .= "MOJE SKUPINY";
@@ -55,18 +47,30 @@ class cMainBar {
                 }
                 $strRet .= "</div>";
             }
-            $strRet .= "</div>";  // myGroups  
-            $strRet .= "<div id=\"loginBar\">";
-            if ($_GET['page'] == 'home' && !isset($_GET['id'])) $strRet .= "<div class=\"arrow-right arrow-login\"></div>";
-            $strRet .= "<a class=\"title\" href=\"?page=home\">";          
+            $strRet .= "</div>";  // myGroups
+            $strRet .= "</div>";    //mainBar
+
             $filename = "./users/{$this->user['id']}/userPhoto.jpg";
             if (file_exists($filename)) $path = $filename;
-            else $path = "./images/ic_avatar_blk_32px.png"; 
-            $strRet .= "<img src=\"{$path}\" id=\"userPhotoImg\" class=\"thumbPhotoUser\">{$this->user['name']} {$this->user['surname']}";   
-            $strRet .= "</a>"; 
-            $strRet .= "<a class=\"btn btn-yellow right black logout\" title=\"odhlásiť sa\" href=\"?page=action&type=logout\">Log Out</a>";
-            $strRet .= "</div>"; // loginBar   
-            $strRet .= "</div>";    //mainBar
+            else $path = "./images/ic_avatar_white_32px.png";
+
+            $strRet .= '<div id="top-bar">';
+            $strRet .= '<div id="loginBar">';
+            $strRet .= '<div class="avatar"><img src="' . $path . '" id="userPhotoImg" class="thumbPhotoUser"></div>';
+            $strRet .= '<div id="user-menu">';
+            $strRet .= '<a class="title" href="?page=home">' . $this->user['name'] . ' ' . $this->user['surname'] . '</a>';
+            $strRet .= '<a class="btn btn-yellow right black logout" href="?page=action&amp;type=logout">Odhlásiť sa</a>';
+            $strRet .= '</div>';    // user-menu
+            $strRet .= '</div>';    // loginNar
+            $strRet .= '<div id="mainSearch"><form>';
+            $strRet .= '<input placeholder="rýchle vyhľadávanie" type="text" name="searchBox" class="mainSearchBox">';
+            $strRet .= '<input type="hidden" value="'. $this->user['id']. '" id="userId">';
+            $strRet .= '<input type="submit" value="Hľadať">';
+            $strRet .= '<div class="advanced-search">Rozšírené vyhľadávanie</div>';
+            $strRet .= '<div id="mainResults"></div>';
+            $strRet .= '</form></div>'; // mainSearch
+            $strRet .= '</div>';    // top-bar
+
             $strRet .= "<div id=\"wrapper\">";    
         }
         else {
