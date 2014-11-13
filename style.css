@@ -1,0 +1,2312 @@
+/**
+ * Colors
+ *
+ * text-dark:   444444
+ * text-light:  ffffff
+ * red:         da4a38
+ * blue:        4585f3
+ * green:       53a93f
+ */
+
+
+
+html, body, div,
+h1, h2, h3, h4, h5, h6,
+p, ul, li, a,
+table, tbody, thead, tr, th, td,
+form, input, button {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-family: 'Roboto', Arial, sans-serif;
+    font-size: 100%;
+    color: #444;
+}
+
+body {
+    background: rgba(0,0,0,.1);
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+p {
+    margin-bottom: 10px;
+}
+
+ul {
+    list-style: none;
+}
+
+input,
+button {
+    font-size: 100%;
+}
+
+li,
+button {
+    transition: background-color .3s;
+}
+
+h1 {
+    font-size: 150%;
+}
+
+h2,
+h3 {
+    font-size: 120%;
+}
+
+#top-bar {
+    position: fixed;
+    top: 0;
+    left: 340px;
+    right: 0;
+    height: 50px;
+    background: #da4a38;
+    z-index: 1;
+}
+
+#top-bar.not-logged-in {
+    left: 0;
+}
+
+#mainBar {
+    position: fixed;
+    top: 0;
+    width: 310px;
+    height: 100%;
+    background: #fff;
+}
+
+#top-bar .main-title {
+    width:300px;
+    margin: 0 auto;
+    line-height: 50px;
+    text-transform: uppercase;
+    color: #fff;
+}
+
+#top-bar .main-title:before {
+    float: left;
+    content: '';
+    width: 28px;
+    height: 32px;
+    background: url(images/logo_white_32px.png) no-repeat center;
+    background-size: 28px;
+    margin: 8px 8px 0 10px;
+}
+
+#myGroups {
+    color: #fff;
+    background:  #72888c;
+}
+
+#wrapper {
+    padding-top: 50px;
+    margin-left: 310px;
+}
+
+#wrapper.not-logged-in {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+#reg-user {
+    margin: 10px;
+    background: #fff;
+}
+
+#reg-user form {
+    padding: 30px;
+}
+
+#reg-user h2 {
+    font-size: 150%;
+    font-weight: 300;
+    padding: 30px 30px 0 30px;
+    text-align: center;
+    /*color: #fff;
+    background: #4585f3;*/
+}
+
+#reg-user li {
+    position: relative;
+    line-height: 32px;
+    margin-bottom: 10px;
+}
+
+#reg-user li.submit {
+    margin-bottom: 0;
+    text-align: right;
+}
+
+#reg-user input[type=text],
+#reg-user input[type=password] {
+    font-size: 120%;
+    padding: 4px;
+    border: 1px solid rgba(0,0,0,.2);
+    width: 100%;
+}
+
+#reg-user input.ok-input,
+#reg-user input.err-input {
+    background: no-repeat right center;
+    background-origin: content-box;
+}
+
+#reg-user input.ok-input {
+    background-image: url(images/ic_success_20px.png);
+}
+
+#reg-user input.err-input {
+    background-image: url(images/ic_error_20px.png);
+    border: 1px solid #da4a38;
+}
+
+#reg-user input[type=radio] {
+    margin: 0 6px;
+}
+
+#reg-user input[type=submit] {
+    color: #fff;
+    background: #4585f3;
+    padding: 10px 20px;
+    font-size: 120%;
+    cursor: pointer;
+}
+
+#reg-user input[type=submit]:hover {
+    background: #5791f4;
+}
+
+#reg-user input[type=submit]:active {
+    background: #427bde;
+}
+
+#reg-user .sex {
+    font-size: 120%;
+}
+
+#reg-user .sex label {
+    margin-right: 10px;
+}
+
+#reg-user select {
+    font-size: 100%;
+    padding: 4px;
+    border: 1px solid rgba(0,0,0,.2);
+    width: 100%;
+}
+
+#reg-user .green {
+    display: none;
+}
+
+#reg-user #checkPasswordLength,
+#reg-user #checkPasswordMatch {
+    display: none;
+    position: absolute;
+    bottom: -30px;
+    left: 0;
+    color: white;
+    background: rgba(0,0,0,.6);
+    font-size: 85%;
+    z-index: 1;
+    padding: 0 10px;
+    line-height: 28px;
+}
+
+#reg-user #checkPasswordLength:before,
+#reg-user #checkPasswordMatch:before {
+    position: absolute;
+    content: '';
+    top: -16px;
+    left: 50%;
+    margin-left: -8px;
+    border-right: solid 8px transparent;
+    border-left: solid 8px transparent;
+    border-top: solid 8px transparent;
+    border-bottom: solid 8px rgba(0,0,0,.6);
+}
+
+@media (min-width: 720px) {
+    .changeGroupLine {
+        position: relative;
+        padding: 10px;
+        padding-left: 13px;
+        width: 300px;
+    }
+    #changeGroup {
+        min-height: 60px;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+    #loginBar {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 300px;
+        font-size: medium;
+        background-color: #272F31;
+        padding-right: 10px;
+        padding-left: 13px;
+        line-height: 44px;
+    }
+    #mainSearch {
+        display: inline-block;
+        font-size: 15px;
+        width: 100%;
+        color: #333; 
+        padding: 15px 10px;
+    }
+
+    #myGroups {
+        background-color: #72888c;
+        min-height: 120px;
+        width: 100%;
+        overflow-y: auto;
+        color: #fff;
+    }
+    #mainBar {
+        position: fixed;
+        top: 0;
+        width: 300px;
+        height: 100%;
+        background-color: #f0f0f2;
+        line-height: 30px;
+        color: #fff;
+        z-index: 1000;
+        overflow: visible;
+    }
+    #titleBar {
+        height: 95px;
+        width: 100%;
+    }
+    .titleLogo {
+        margin: 17px 0px 0px 20px;    
+    }
+
+}
+
+.hidden {
+    display: none !important;
+    visibility: hidden !important;
+}
+
+.mainSearchResult img {
+    width: 40px;
+    height: 40px;
+}
+
+
+#tinymce {
+    color: #444;
+}
+
+#userGroupsFilter {
+    position: relative;
+}
+
+.arrow-left {
+    width: 0; 
+	height: 0; 
+	border-top: 22px solid transparent;
+	border-bottom: 22px solid transparent;	
+	border-right: 22px solid #e83038;
+    position: absolute;
+    left: -22px;
+}
+
+.arrow-right {
+	width: 0; 
+	height: 0; 
+	border-top: 10px solid transparent;
+	border-bottom: 10px solid transparent;	
+	border-left: 10px solid #f1f46a;
+    position: absolute;
+    left: 1px;
+    bottom: 34%;
+}
+
+.arrow-login {
+    bottom: 30%;
+}
+
+#groupChanger {
+    width: 100px;
+    display: inline-block;
+    font-size: 15px;
+    position: relative;
+    color: #333;
+    margin-left: 100px;
+    bottom: 10px;
+}
+
+
+a {
+    color: #208e8d;
+}
+  
+.editUserInfo {   
+    float:right;
+}   
+
+
+
+.figure {
+    height: 30px;
+    margin-right: 15px;
+}
+
+.addNews {
+    width: 98%;
+    margin: 10px;
+}
+
+#groupNewsAdd  {
+    width: 100%;
+}
+
+#groupNews h2  {
+    width: 150px;
+    display: inline-block;
+}
+
+
+#novinka {
+    background-color: white;
+    width: 100%;
+    margin-top: 15px;
+    padding: 5px;
+    background-color: #F2F9F9;
+    overflow: hidden;
+    margin-left: 5px;
+}
+
+#novinkaMain {
+    position: relative;
+    float: left;
+    width: 98%;
+}
+
+#novinkaEdit textarea, #replyEdit  {
+    width: 440px;
+}
+
+#commentContent > span {
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    color: grey;
+}
+
+#novinkaContent > span, #replyContent > span {
+    color: grey; 
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+}  
+
+#addComment textarea {
+    width: 400px;
+    height: 50px;
+    float: left;
+    margin-right: 10px;
+} 
+
+#noteTextarea  {
+    width: 100%;
+    min-height: 150px;
+    background: white;
+    position: relative;
+    top: 30px;
+    margin-bottom: 10px;
+    border: 1px #333 solid;
+} 
+
+#novinkaComments {
+    width: 89%;
+    position: relative;
+    left: 80px;
+    min-height: 70px;
+    background-color: #f2f0ef;
+    box-shadow: 5px 5px 5px #888;
+    border-left: ridge #D7D3D0;
+    border-right: ridge #D7D3D0;
+    border-bottom: ridge #D7D3D0;
+}
+
+#addComment {
+    position: relative;
+    width: 100%;
+    min-height: 70px;
+    padding: 5px;   
+}
+
+#comment {
+    background-color: #FFF;
+    width: 480px;
+    margin: 5px;
+    padding: 5px;
+    border-style: ridge;
+    border-color: #D7D3D0;
+    overflow: hidden;
+}
+
+#commentUser {
+    width: 70px;
+    display: inline-block;
+    text-align: center;
+    border-right: 1px solid #C0BCB9;
+    border-bottom: 1px solid #C0BCB9;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+#commentUser img {
+    width: 52px;
+    height: 39px;
+}
+
+#commentContent {
+    display: inline-block;
+    min-height: 75px;
+    position: relative;
+    padding-left: 10px;
+    width: 380px;
+    float: right;
+}
+
+#commentContent div {
+    margin-bottom: 20px;
+}
+
+#novinkaContent div {
+    margin-bottom: 30px;
+}
+
+#novinkaThumb {
+    height: 45px;
+    margin-top: 5px;
+    overflow: hidden;
+    margin-left: 4px;
+    margin-right: 4px;
+}
+
+#novinkaThumb:hover {
+    cursor: pointer;
+    background-color: #f3ee9b;
+}
+
+#novinkaThumbContent {
+    font-size: 12px;
+    overflow: hidden;
+    min-height: 40px;
+    padding: 5px;
+    position: relative;
+}
+
+.groupShortName {    
+    line-height: 18px;
+    white-space: nowrap;
+    word-break: keep-all;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    z-index: 1;
+    
+}
+
+#novinkaThumbContent p {
+    font-weight: 600;
+    font-size: 14px;
+    color: #444;
+    margin: 0;
+}
+
+#novinkaThumbContent img {
+    float: left;
+    opacity: 0.7;
+    margin-right: 5px;
+}
+
+
+#novinkaThumbContent > span {
+    color: grey;
+    font-size: smaller;
+    float: right;
+    text-align: right;
+}
+
+#novinkaThumbContent > div {
+    color: #208E8D;
+}
+
+#noNews  {
+    width: 300px;
+}
+
+#selectFileCategories {
+    max-width: 150px;
+}
+
+#filter {
+    float: right;
+    position: relative;
+    margin: 5px;
+}
+
+#mainResults {
+    position: absolute;
+    width: 450px;
+    min-height: 0px;
+    z-index: 1001;
+    background: white;
+    max-height: 500px;
+    overflow: auto;
+    border: 1px black solid;
+}
+
+#mainResults li {
+    height: 43px;
+    width: 100%;
+    padding-left: 7px;
+    white-space: nowrap;
+    word-break: keep-all;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 5px;
+}
+
+#mainResults li:hover {
+    background-color: #B7110D;
+    color: #FFD42A;
+    cursor: pointer;
+}
+
+#mainResults img {
+    margin-top: 1px;
+    position: absolute;
+    right: 2px;
+    
+}
+
+#mainResults ul {
+    list-style-type: none;
+    margin: 0px;
+    padding: 0px;        
+}
+
+#addFile h4 {
+    display: inline-block;
+    margin-left: 50px;
+}
+
+
+#addCategory, #delCategory {
+    position: absolute;
+    padding: 5px;
+    background: #e3dedb;
+    border: 1px solid black;    
+}
+
+
+#filesAdd  {
+    min-height: 50px;
+    background: #e3dedb;
+    width: 590px;
+    overflow: auto;
+    z-index: 1;   
+}
+
+#files  {
+    min-height: 100%; 
+}
+
+#files option {
+    max-width: 400px;
+    text-overflow: ellipsis;
+}
+
+#files h2 {
+    display: inline-block;
+    width: 150px;
+}
+
+#fileInfo  {
+    margin-left: 10px;
+    overflow: auto;
+    width: 97%;
+}
+
+#fileInfo button {
+    float: right;
+}
+
+#userFiles {
+    overflow: auto;
+}
+
+#userFiles h2 {
+    width: 300px;
+    float: left;
+}
+
+#editFileInfo  {
+    width: 100%;
+}
+
+#editFileInfo input {
+    float: right;
+    margin: 5px;
+}
+
+#editFileInfo textarea {
+    width: 100%;
+    min-height: 50px;
+}
+
+#addFile  {
+    background: #EDEBE8;
+    margin-bottom: 10px;
+    margin-top: 5px;
+    border: 2px #333 ridge;    
+}
+
+.addFileBtn, .addForumBtn, .addNoteBtn, .addFolderBtn, .addNoteFolderBtn, .addNewsBtn, .addNewsFileBtn  {
+    margin: 5px;
+}
+
+#categoryTree{
+    position: absolute;
+    background: #ddd;
+    z-index: 100;
+}
+
+#categoryTree li {
+    cursor: pointer;
+}
+
+#categoryTree li:hover {
+    background: #bbb;
+}
+
+#filesAdd textarea  {
+    height: 40px;
+}
+
+#fileThumb  {
+    background: white;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #C0BCB9; 
+    min-height: 50px; 
+    width: 98%; 
+}
+
+#fileThumb > span {
+    line-height: 52px;
+}
+
+#fileThumb span {
+    color: #AAA;
+    font-size: smaller;
+    float: right;
+    height: 52px;
+    margin-right: 5px;
+}
+
+#fileThumb button {
+    margin: 5px;
+}
+
+.fileType {
+    margin: 3px;
+}
+
+#userRank { 
+    margin-top: 15px;
+    background-color: #fbf6a4; 
+}
+
+#userRankLeft, #userRankRight {
+    display: inline-block;
+    width: 50%;
+    list-style-type: none;
+    text-align: right;
+    font-size: 17px;
+} 
+
+#userRank div > li {
+    width: 95%;
+}
+
+#userRank span {
+    line-height: 25px;
+    position: relative;
+    margin-left: 100px;
+}
+
+.userRankTitle {
+    background-color: #f9f264;
+    text-transform: uppercase;
+}
+
+#userRankLeft label, #userRankRight label {
+    float: left;
+    text-align: right;
+    font-size: 13px;
+    width: 120px;
+    font-weight: normal;
+    line-height: 24px;
+    margin: 0;
+}
+
+#rank { 
+    width: 80px;
+    margin-top: 0px;
+    text-align: center;
+    color: #208e8d;
+    font-size: 23px;
+} 
+
+.editPhoto {
+    position:absolute;
+}
+
+.editGroupBtn {
+    font-size: 35px;
+}
+
+#name {
+    color: #444;
+    height: 65%;
+    vertical-align: text-bottom;
+    margin-left: 10px;
+}
+
+#name h1 {
+    font-size: 23px;  
+}
+
+#curTitle {
+    display: inline-block;
+    height: 100%;
+    width: 88%;
+    text-align: center;  
+    
+}
+
+#curTitle:hover {
+    cursor: pointer;
+    
+}
+
+#folderContent {
+    overflow: auto;
+}
+
+#folderContent span {
+    float: right;
+}
+
+#curFolderContent {
+    width: 92%;
+    float: left;
+    overflow: auto;
+}
+
+#curFolderContent:hover {
+    cursor: pointer;
+    width: 92%;
+    float: left;
+    
+}
+
+.aNone {
+    text-decoration: none;
+    color:inherit;
+}
+
+.aNone:hover {
+    text-decoration: none;
+    color: inherit;
+}
+
+.title {
+    text-decoration: none;
+    color: #FFF;
+}
+
+.title:hover {
+    text-decoration: none;
+    color: #FFF; 
+}
+
+
+.black {
+    color: #000;
+} 
+
+#content {
+}
+
+.resultForum th {
+    background-color: #B7110D;
+    color: white;
+}
+
+td.tableSubject {
+    line-height: 20px;
+}
+  
+td.tableSubject div {
+    height: 40px;
+    width: 100%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    word-break: keep-all;
+}
+
+.resultForum table tr {
+    cursor: pointer;
+    height: 10px;
+    overflow: hidden;
+}
+
+.forumRow {
+    cursor: pointer;
+    border-bottom: 1px solid #ddd;
+}
+
+.resultForum table th {
+    cursor: default;
+}
+
+.resultForum table {
+}
+
+#forum {
+    padding-bottom: 20px;
+}
+
+#forum h2 {
+    display: inline-block;
+    margin-bottom: 20px;
+}
+
+.tableSubject {
+    width: 250px;
+}
+
+#forumAdd {
+    width: 100%;
+    margin: 0 auto;
+    padding-top: 10px;  
+} 
+
+#forumAdd h4 {
+    float: right;
+    margin-left: 50px;
+    display: inline-block;
+    margin-bottom: 0px;
+}
+
+.forumAddSubject {
+    width: 300px;
+    margin-bottom: 5px;
+}
+
+#topicSubject {
+    margin: 15px;
+    padding: 10px 10px 20px;
+    border-radius: 4px;
+    background: none repeat scroll 0% 0% #FFF;
+    border: 1px solid black;
+    position: relative;
+}
+
+#topicSubject h3 {
+    font-size: 20px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}    
+
+#topicReply { 
+    margin-bottom: 10px;
+    padding: 3px 3px 3px;
+    border-radius: 4px;
+    background: #FFF;
+    box-shadow: 5px 5px 5px #888888;
+    border-style: ridge;
+    border-color: #D7D3D0;
+    position: relative;
+    min-height: 50px;
+    overflow: hidden;
+}
+ 
+
+#replyUser, #novinkaUser {
+    width: 94px;
+    display: inline-block;
+    text-align: center;
+    border-right: 1px solid #C0BCB9; 
+    border-bottom: 1px solid #C0BCB9; 
+    font-weight: bold;
+    background-color: white;
+}
+
+#replyContent, #novinkaContent, #novinkaEdit, #replyEdit {
+    display: inline-block;
+    padding-left: 20px;
+    width: 83%;
+    float: right;  
+}
+
+#commentEdit  {
+    display: inline-block;
+    width: 370px;
+    float: right; 
+}
+
+#commentEdit textarea {
+    width: 360px;
+}
+
+#replyContent div  {
+    margin-bottom: 30px;
+}
+
+#novinkaContent  {
+    min-height: 100px;  
+    position: relative;
+}
+ 
+
+.cntOfNotes {
+    color: grey;
+    font-size: small;
+}
+
+#actionOk {
+    border: 1px solid;
+    border-color: #4CAE4C;
+    color: white;
+    width: 350px;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 4px;
+    background: #5cb85c; 
+    margin: 0 auto;
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: bold;
+    position: absolute;
+    z-index: 100;
+    left: 385px;
+    top: 80px;
+}
+
+#userNotes {
+    overflow: auto;
+}
+
+#results {
+    overflow: auto;
+    margin-top: 20px;
+}
+
+.resultsArticles, .resultsForum, .resultsNotes, .resultsFiles {
+    width: 100%;
+}
+
+#searchResultsForum, #searchResultsNotes, #searchResultsNews, #searchResultsFiles  {
+    overflow: auto;
+    margin-top: 10px;
+    background: #EDEBE8;
+}
+
+#searchResultsForum {
+    max-height: 240px;
+    float: left;
+}
+
+#searchResultsNotes {
+    max-height: 332px;
+}
+
+#searchResultsNews {
+    max-height: 320px; 
+}
+
+#searchResultsFiles {
+    max-height: 245px;
+}
+
+#searchResultsForum > h3, #searchResultsNotes > h3, #searchResultsNews > h3, #searchResultsFiles > h3 {
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+
+.dNone {
+    display: none;
+}
+
+#search {
+    width: 595px;
+    position: relative;
+    left: -5px;
+}
+
+#groupSearch {
+    padding: 5px;
+}
+
+
+
+
+.thumbPhoto {
+    height: 35px;
+    width: 40px;
+    margin-right: 15px;
+    float: left;
+}
+
+.thumbPhotoUser {
+    height: 35px;
+    width: 40px;
+    margin-right: 15px;
+}
+
+#myGroupsTitle {
+    background-color: #272F31;
+    padding: 15px;
+}
+}
+
+.white {
+    color: #fff;
+}
+
+.mainSearchBox  {
+    padding-left: 9px;
+    width: 100%;
+}
+
+.mainSearchNote {
+    font-size: 15px;
+    line-height: 24px;
+    font-weight: 700;
+    display: inline-block;
+    width: 240px;
+    white-space: nowrap;
+    word-break: keep-all;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.mainSearchArticle {
+    font-size: 20px;
+    line-height: 41px;
+    font-weight: 500;
+    display: inline-block;
+    width: 240px;
+    white-space: nowrap;
+    word-break: keep-all;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.mainSearchGroup {
+    font-size: 15px;
+    line-height: 41px;
+    text-transform:uppercase;
+    display: inline-block;
+    width: 400px;
+    white-space: nowrap;
+    word-break: keep-all;
+    overflow: hidden;
+    text-overflow: ellipsis; 
+}
+
+#mainSearchResultContent {
+    font-size: 13px;
+    line-height: 13px;
+    width: 380px;
+    white-space: nowrap;
+    word-break: keep-all;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: 100%;
+}
+
+#mainSearchResultContent span {
+    color: grey;
+    font-size: 13px;
+    display: inline-block;
+    margin-left: 10px;
+    line-height: 24px;
+    position: absolute;
+    width: 130px;
+    white-space: nowrap;
+    word-break: keep-all;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+.searchBoxInput  {
+    padding: 2px 5px;
+    color: #444;
+}
+
+#navigBar a {
+    color: #fff;
+}
+
+#navigBar  {
+    width: 100%;
+    background-color: #fff;
+}
+
+#navigBarItemHome {
+    display: inline-block;
+    margin-right: 10px;
+    color: #fff;
+    text-decoration: none;
+}
+
+
+#navigBarItemHome h2 {
+    color: #fff;
+    text-decoration: none;
+}
+    
+
+.navigBarItem {
+    display: inline-block;
+    margin-right: 5px;
+    font-style: italic;  
+    max-width: 150px;
+    height: 20px;
+    white-space: nowrap;
+    word-break: keep-all;
+    overflow: hidden;
+    text-overflow: ellipsis; 
+}
+
+.navigBarItem::before {
+    margin-right: 5px;
+    content: ">";
+}
+
+
+#allNotes  {
+    float: left;
+    margin-top: 10px;
+    width: 100%;
+}
+
+#userNotes h2 {
+    width: 300px;
+    float: left;
+    display: inline-block;
+}
+
+#userSelectFiles, #userSelectForum, #userSelectNotes {
+    margin-top: 20px;
+    width: 170px;
+}
+
+#userVisualNotes {
+    overflow: auto;
+}
+
+#userVisualNotes h2 {
+    width: 300px;
+    float: left;        
+}
+
+.addKW, .addRef {
+    margin: 5px 5px 5px 5px;
+    padding: 5px 5px;
+}   
+
+.addKW:hover, .addRef:hover  {
+    cursor: pointer;
+}
+
+#references {
+    border-top: 1px solid grey;
+    margin-top: 15px;
+    padding-top: 15px;
+}
+
+#referencesAdd {
+    margin-top: 5px;
+    width: 50%;
+}
+
+#referencesAdd input {
+    width: 100%;
+}
+
+#userRightPanel {
+    float: right;    
+
+}  
+
+#noteThumb h3, #folderThumb h3, #folderThumbNote h3 {
+    padding: 0;
+    white-space: nowrap;
+    word-break: keep-all;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 0;
+    font-size: 17px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    z-index: 1;
+}
+
+#articleThumb h3 { 
+    height: 80px;
+    overflow: hidden;
+} 
+
+#folderHeader, #folderFooter {
+    background: white;
+    margin-bottom: 15px;
+    padding: 15px;
+    border-radius: 4px;
+    border: 1px solid #B7110D;
+    position: relative;
+    padding-bottom: 30px;
+    margin-top: 5px;
+}
+
+#folderHeaderInfo {
+    background: white;
+    padding: 10px;
+    border-left: 1px solid #B7110D;
+    border-right: 1px solid #B7110D;
+    border-bottom: 1px solid #B7110D;
+    position: relative;
+    z-index: 1;
+    top: -40px;  
+    padding-left: 30px;
+    padding-right: 40px;
+}
+
+#folderFooter {
+    min-height: 100px;
+    margin-top: 20px;
+    width: 100%;
+    float: left;
+} 
+
+textarea  {
+    resize: vertical;
+    width: 98%;
+}
+
+#noteAdd textarea, #folderAdd textarea {
+    min-height: 150px;
+}
+
+#noteAdd h4 {
+    float: right;
+    margin-top: 0px;
+}
+
+#folderAdd {
+    padding-top: 10px;
+} 
+
+#folderAdd h4 {
+    float: right;
+} 
+
+#folderNotes {
+    margin-top: 70px;
+    overflow: auto;
+}  
+
+#folderHeader h3  {
+    text-align: center;
+    font-size: 35px;
+} 
+
+#folderHeader:hover, #folderFooter:hover, #folderHeaderInfo:hover {
+    cursor: pointer;
+}       
+ 
+#userGroups {
+    
+}
+
+#userGroups > span {
+    position: relative;
+    float: right;
+    margin: 5px;
+}    
+
+.userName {
+    margin-right: 15px;
+    float: left;
+    color: #FFE83E;
+}
+
+.btn {
+    
+}
+
+.btn-yellow {
+    background-color: #fcf068;
+}
+
+.right {
+    float: right;
+}
+
+.logout {
+    margin-top: 5px;   
+}    
+
+.userName:hover {
+    text-decoration: none;
+    color: #FFE83E; 
+}    
+
+#allGroups {
+    margin-top: 20px;
+    min-height: 200px;
+    background-color: #e3dedb;
+    width: 340px;
+    padding: 5px;  
+}
+
+#userProfile h2 {
+    margin-left: 20px;
+}
+
+#userProfile h3 {
+}
+
+#groupInfo > span, #groupPhoto > span, #userPhoto > span {
+   position: absolute;
+   bottom: 0;
+   left: 20px;
+   text-transform: uppercase;
+   padding-top: 15px;
+}
+
+#userGroups > span {
+    position: relative;
+    text-transform: uppercase;
+    padding-top: 15px;
+}    
+
+#groupTitle > span, #userTitle > span {
+    float: right;
+    padding: 5px;
+}
+
+#editTitle {
+}
+
+.btn-editTitle {
+    float: right;
+    position: relative;
+    top: -50px;
+}
+ 
+
+.btn-backTitle {
+    float: right;
+    position: relative;
+    top: -50px;
+}      
+
+#editTitle select {
+}     
+
+#imgThumbEdit {
+    position: relative;
+    float: left;
+    width:100px;
+    height: 100px;
+} 
+
+#imgThumbEdit img {
+    width: 80px;
+    height: 60px;
+}
+
+#imgThumbEdit span {
+    position: absolute;
+    bottom: 0;
+}
+
+
+#userInfo h3 {
+}
+
+#groupAdd  {
+    padding: 10px;
+    width: 800px;
+    margin-top: 10px;
+}
+
+#groupAddInfo, #groupAddInfoRegistration  {
+    margin-top: 10px;
+    padding: 10px;
+}
+
+#groupAddInfo {
+    position: relative;
+    top: -90px;
+}
+
+#groupAddInfoRegistration {
+    position: relative;
+    top: -110px;
+}
+
+#groupAdd ul, #groupAddInfo ul, #groupAddInfoRegistration ul {
+    list-style-type: none;
+} 
+
+#groupAdd li, #groupAddInfo li, #groupAddInfoRegistration li {
+    margin: 10px;
+}
+
+#groupAdd li img {
+    float: right;
+    margin-right: 100px;
+}
+
+#groupAdd label {
+    width: 200px;
+}
+
+#myGroupsTitle a {
+    color: black;
+}
+
+.groupAddName {
+    width: 250px;
+}
+
+.groupAddPrivacy, .groupAddType {
+    width: 50px;
+}
+
+#groupAdd select {
+    width: 250px;
+}
+
+#FAchanger {
+    margin-bottom: 10px;
+    text-align: center;
+    font-size: 18px;
+}
+
+#FAchanger input {
+    width: 30px;
+}
+
+#categoryAdd {
+    margin-top: 10px;
+}
+
+#grps {
+    margin-bottom: 40px;
+}    
+
+#curInfo {
+    max-height: 126px;
+    overflow: hidden
+}
+
+#groupInfo button {
+    margin: 5px;
+}
+
+#editInfo {
+    background-color: #e3dedb;
+    border: 1px solid black;
+    padding: 10px;
+}
+
+#curInfo {
+    position: relative;
+    width: 100%;
+    height: 88%;
+    overflow: hidden;
+}
+
+#curInfo h3 {
+    font-size: 20px; 
+    margin-bottom: 2px;
+}
+
+#curInfo:hover {
+
+}
+
+#makeReference {
+    position: relative;
+    width: 300px;
+    height: 80px;
+    background-color: #e3dedb;
+    top: -200px;
+    left: 5px;
+    border: 1px solid black;
+    border-radius: 4px;
+    padding: 15px;
+}   
+
+.showMakeReference {
+    position: relative;
+    left: 200px;
+}      
+
+#addImages {
+    float: right;
+    display: inline-block;
+}     
+
+#keywords {
+    display: inline-block;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}   
+
+#groupSidePanel, #userSidePanel {
+    /*position: fixed;*/
+    float:right;
+    margin-right: 8px;
+    width: 300px;
+    padding-top: 10px; 
+} 
+
+#group, #userProfile {
+    position: relative;
+    margin-right: 316px;
+}
+
+.thumbGroup {
+    padding: 5px 8px;
+    background-color: #e83038;
+    height: 44px;
+    position: relative;
+}
+
+#userGroupsFilter a:hover {
+    text-decoration: none;
+}
+
+#userGroupsFilter a {
+    color: #fff;
+}
+
+.thumbGroup:hover {
+    text-decoration: none;
+    background-color: #e0282f;
+    cursor: pointer;
+}
+
+
+.activeGroupFilter:before {
+    content: "";
+    width: 0; 
+	height: 0; 
+	border-top: 22px solid transparent;
+	border-bottom: 22px solid transparent;	
+	border-right: 22px solid #e83038;
+    position: absolute;
+    left: -22px;
+    top: 0;
+    z-index: 10;
+}
+
+.activeGroupFilter:hover:before {	
+	border-right: 22px solid #e0282f;
+}
+
+.thumbGroup span {
+    font-size: 10px;
+    color: #bbb;
+}
+
+.changeGroupLine span {
+    font-size: 10px;
+    color: #bbb;
+}
+
+#showNote {
+    padding: 15px;
+    border-radius: 4px;
+    background: #FFF;
+    border: 1px solid #FFE83E;
+    position: relative;
+    padding-bottom: 50px;
+}
+
+.changeGroupLine > div {    
+    width: 80%;
+    display: inline-block;
+    font-size: 13px;
+}
+
+.changeGroupLine.activeGroup:after {
+    position: absolute;
+    display: block;
+    right: 0;
+    top: 50%;
+    margin-top: -16px;
+    content: '';
+    border-bottom: solid 16px transparent;
+    border-right: solid 16px #C5D2D3;
+    border-left: solid 16px transparent;
+    border-top: solid 16px transparent;
+}
+
+.changeGroupLine:hover {
+    background-color: #8d9fa2;
+}
+
+.likeBtn {
+    font-size: 30px;
+    line-height: 15px;
+    text-align: center;
+    vertical-align: middle;
+    padding: 5px;
+    width: 25px; 
+}
+
+
+#showNoteInfo  {
+    margin-top: 30px;
+    font-size: 12px;
+}
+
+
+#showNoteInfo label, #showNoteCategory label, #showNoteImage label, #showNoteRank label  {
+    margin-right: 30px;
+    display: inline-block;
+    width: 95px;
+    text-align: right;
+}
+
+#showNoteRank label  {
+    line-height: 26px;
+}
+
+#showNoteKeyword, #showNoteReference, #showNoteCategory, #showNoteImage, #showNoteRank  {
+    width: 100%;
+    min-height: 10px;
+    overflow: auto;
+    margin-bottom: 10px;
+}
+
+#showNoteKeywords, #showNoteReferences, #showNoteCategories, #showNoteImages, #showNoteRanks  {
+    width: 420px;
+    float: right;
+}
+
+#showNoteKeywords li, #showNoteReferences li, #showNoteCategories li, #showNoteImages li, #showNoteRanks li {
+    min-width: 10px;
+    display: inline-block;
+    color: grey;
+    margin-right: 25px;
+}
+
+#showNoteReferences li, #showNoteImages li  {
+    margin-bottom: 5px;
+}
+
+#showNoteRanks li {
+    font-size: 20px;
+}
+
+#noteContent h3 {
+    font-size: 20px;
+    text-align: center;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    text-transform: uppercase;
+}
+
+#articleContent h3 {
+    text-indent:20px;    
+}
+
+#noteContent p {
+}
+
+.noteImageThumb {
+    width: 100px;
+    height: 80px;
+}
+
+.noteInfo, .folderInfo  {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    color: grey;
+    font-size: smaller;
+    font-style: italic;
+    margin: 5px;
+}
+
+.tableHeaderItem {
+    width: 105px;
+    height: 50px;
+    display: inline-block;
+    background: white;
+    margin: 20px;
+    text-align: center;
+    line-height: 23px;
+    box-shadow: 5px 5px 5px #888888;
+    border-radius: 9px;
+}
+
+.tableHeaderItem:hover {
+    cursor: pointer;
+    box-shadow: 0px 0px 0px #888888;
+}
+
+#settingsTableContent  {
+    overflow: auto;
+    margin-top: 20px;
+}
+
+#settingsTableContent span {
+    float: right;
+}
+
+#settingsTableContent label {
+    width: 150px;
+    text-align: right;
+    margin-right: 50px;
+    display: inline-block;
+}
+
+#settingsTableContent li {
+    margin-bottom: 10px;
+    list-style-type: none;
+}
+
+#settingsMain li select {
+    max-width: 300px;
+}
+
+#settingsMainForm  {
+    background: white;
+    padding: 5px;
+    overflow: auto;
+    margin-bottom: 20px;
+}
+
+.settingsEditBtn   {
+    float: right;
+}
+
+.infoHeader  {
+    font-size: 25px;
+    text-align: center;    
+}
+
+#groupContent, #userContent {
+    width: 100%;
+    background-color: #fff;
+    display: inline-block;
+    overflow: auto;
+    border: 8px #fff solid;
+    margin-bottom: 30px;
+    min-height: 500px;
+}
+
+#groupThumbActions {
+    background-color:  #fbf6a4;
+    min-height: 400px;
+    padding-bottom: 2px;
+}
+
+#settingsInfo {
+    margin: 10px 10px 30px 10px;
+}
+
+#actionsTitle {
+    height: 40px;
+    background-color: #f9f264;
+}
+
+#filterTitle {
+    height: 40px;
+    background-color: #a11f24;
+    color: #fff;
+}
+
+#actionsTitle h3, #filterTitle h3, .userRankTitle h3 {
+    line-height: 40px;
+    text-transform: uppercase;
+    font-size: 17px;
+    font-weight: 600;
+    padding-left: 20px;
+}
+
+#groupThumbActions h2 {
+    margin-bottom: 10px;
+    margin-left: 5px;
+}    
+
+#groupNotes {
+    height: 100%;
+}
+
+#groupNotes h2, #groupFolders h2 {
+    width: 30%;
+    float: left;
+    display: inline-block;
+    width: 300px;
+}
+
+#groupButtons, #userButtons{
+    color: #272F31;
+    margin-left: 10px;
+} 
+
+#rightButtons {
+    background-color:  #c6c2b3;
+    width: 60px;
+    height: 30px; 
+    float: right;
+    position: relative;
+    top: -20px;   
+}
+#filterSelect > ul { display: none; }
+#filterSelect:hover > ul {display: block; background: #f9f9f9; border-top: 1px solid purple;}
+#filterSelect:hover > ul > li { padding: 5px; border-bottom: 1px solid #4f4f4f;}
+#filterSelect:hover > ul > li:hover { background: white;}
+#filterSelect:hover > ul > li:hover > a { color: red; }
+
+#filterSelect {
+    margin: 10px;
+    padding: 10px; 
+    border: 2px solid purple; 
+    width: 200px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.subCat {
+    margin-left: 10px;
+}
+ 
+.menuBtn {
+    display: inline-block;
+    padding: 10px 20px;
+    /*background: #13625f;*/
+    text-transform: uppercase;
+    transition: background-color .32s;
+    -moz-transition: background-color .37s;
+    -o-transition: background-color .32s;
+    -webkit-transition: background-color .32s; 
+}
+
+.menuBtn:hover {
+    color: #fff;
+    background-color:  #72888C;  
+}
+
+.menuBtnRight  {
+    position: relative;
+    width: 30px;
+    display: inline-block;
+    height: 30px;
+    padding-left: 15px;
+}
+
+
+.menuBtnRight img {
+    height: 30px;
+    width: 30px;
+    position: relative;
+    left: -15px;
+}
+    
+.menuBtn:hover, .menuBtnRight:hover  {
+    cursor: pointer;
+}     
+
+.active  {
+    padding: 15px 20px 10px 20px;
+    background-color:  #fff;
+} 
+
+.active:hover {
+    background-color: #fff;
+    color: inherit;
+}
+
+.groupSearchInput {
+    width: 270px;
+}
+
+#groupSearchThumb {
+    margin-bottom: 15px;
+}
+
+#basicSearch {
+    height: 20px;
+    float: right;
+    padding-top: 5px
+}
+
+.searchBtn {
+    float: right;
+}
+
+.searchBtnBlue {
+    background-color: #13625f;
+}
+
+.searchBtnYellow {
+    background-color: #f9f365;
+}
+
+#searchBtn {
+    border: 0px solid transparent;
+    padding: 3px 2px 0px 2px;
+    height: 28px;
+    width: 45px;
+}
+
+
+.btn-edit {
+    border: 1px transparent;
+    padding: 4px 12px;
+    border-radius: 4px;
+}
+
+
+#noteThumb:hover, #folderThumb:hover, #articleThumb:hover,  #folderThumbAll:hover {
+    cursor: pointer;
+    box-shadow: 0px 0px 0px #888888;
+}
+
+@media (min-width: 720px) {
+    #noteThumb, #folderThumb, #folderThumbAll { 
+        width: 94%;
+    }
+}
+
+
+@media (min-width: 1140px) {
+    #noteThumb, #folderThumb, #folderThumbAll { 
+        width: 47%;
+    }
+}
+
+@media (min-width: 1360px) {
+    #noteThumb, #folderThumb, #folderThumbAll { 
+        width: 31%;
+    }
+}
+
+@media (min-width: 1600px) {
+    #noteThumb, #folderThumb, #folderThumbAll { 
+        width: 23%;
+    }
+}
+
+#noteThumb, #folderThumb, #articleThumb, #folderThumbAll {
+    position: relative;
+    height: 130px;
+    margin-left: 10px;
+    margin-bottom: 13px;
+    float:left;
+    padding: 7px;
+    overflow: hidden;
+}
+
+.noteThumbImg {
+    height: 10px;
+    width: 10px;
+}
+
+.myNoteThumb {
+    box-shadow: 5px 5px 5px rgba(0,0,255,0.4);
+}
+
+
+#noteThumb {
+    background-color: #FFF0A5;
+    font-size: 12px;
+}  
+
+#noteThumb:after {
+    position: absolute;
+    display: block;
+    right: 0;
+    bottom: 0;
+    content: '';
+    border-bottom: solid 10px #fff;
+    border-right: solid 10px #fff;
+    border-left: solid 10px rgba(0,0,0,.1);
+    border-top: solid 10px rgba(0,0,0,.1);
+}
+
+#articleThumb {
+    text-align: center;
+    font-size: 12px;  
+    background-color: white;
+}
+
+#allFiles {
+    margin-top: 70px;
+}
+
+#folderThumb, #folderThumbAll {
+    font-size: 12px;
+    background-color: white;
+    box-shadow: 5px 5px 5px #888;
+}
+
+#folderThumbAll h3 {
+    text-align: center;
+    font-size: 35px;
+}
+
+#folderThumbAll p {
+    text-align: center;
+}
+
+.open {
+    background: url(images/folderOpen.png) center no-repeat;
+}
+
+.closed {
+    background: url(images/folderClosed.png) center no-repeat;
+}
+
+#folderThumb span {
+    float: right;
+    color: grey;
+}
+
+
+#noteThumb p, #folderThumb p {
+    padding-bottom: 5px;
+    height: 69px;
+    overflow: hidden;
+} 
+
+.noteThumbRank, #articleThumb span {
+    font-size: 17px;
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+
+}
+
+.likesButtons {
+    position: absolute;
+    bottom: 10px;
+    left: 20px;
+    font-size: 40px;
+}  
+
+.likesButtons a:hover {
+    text-decoration: none;
+}
+      
+.red {
+    color: red;
+} 
+
+.green {
+    color: green;
+}  
+
+.grey  {
+    color: grey;
+}
+
+
+#groupRequests {
+    border: 1px solid black; 
+    position: absolute;
+    width: 300px;
+    min-height: 50px;
+    z-index: 1;
+    background-color: #E3DEDB; 
+    padding: 5px;   
+}
+
+#groupRequests h3 {
+    margin-top: 0px;
+    font-size: 18px;
+}
+
+#groupUsers {
+    width: 200px;
+    min-height: 200px;
+    background-color: #E3DEDB;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    padding-left: 5px;
+    padding-top: 5px;
+    position: absolute;
+    top: 540px;
+  
+}
+
+#group h2 {
+    font-size: 25px;
+    margin-top: 5px;
+}
+
+#group h3 {
+} 
+
+#group h4 {
+} 
+
+#groupPhoto img, #userPhoto img {
+    height: 90px;
+    float: left;
+}
+
+
+#userPhoto  {
+    position: relative;
+ } 
+ 
+ #groupPhoto {
+    
+}
+ 
+.transparent {
+     background-color: rgba(255,255,255,0);
+ }
+ 
+ 
+.transparent:hover {
+    background: #FFF;
+    border: 1px solid #B7110D;
+}
+
+#groupTitle, #userTitle  {
+    color: #208e8d;   
+    overflow: hidden;  
+}   
+ 
+#groupTitle h1, #userTitle h1  {
+    font-size: 30px;
+    margin-top: 5px;
+    vertical-align: middle;
+} 
+
+ 
+    
+#regUser  {
+    margin: 0 auto;
+    min-width: 400px;
+    margin-top: 10px;
+} 
+
+#regUser li {
+    height: 35px;
+}
+
+#regUser li:active {
+    box-shadow: 1px solid #ccc;
+}
+
+#regUser h2 {
+    letter-spacing: 2px;
+}
+
+#regUser ul {
+    list-style-type: none; 
+} 
+
+.label-reg-user {    
+    width: 200px;    
+}    
+    
+#opening {
+    min-height: 400px;
+}
+
+
+#help:hover {
+    cursor: pointer;
+}
+
+#login input {
+    width: 93%;
+}
+
+#login {
+    position:relative;
+    top: 150px;
+    left: 400px;
+    height: 160px;
+    width: 140px;
+}
+
+#regBar {
+    position: relative;
+    left: 423px;
+    top: 100px;
+    width: 110px;
+}
+
+#help a  {
+    color: #000;
+    font-size: 24px;
+    text-decoration: none;
+    width: 100%;
+    text-align: center;
+    position: absolute;
+    bottom: 0px;
+}
+
+#helpContent  {
+    background: #FFF;
+    border: 1px solid #FFE83E;
+    width: 1000px;
+    height: 350px;
+    padding: 30px;
+    text-align: center;
+}  
+
+.noteVisual {
+    min-height: 330px;
+}
+
+#helpContent f {
+    color: grey;
+}     
+
+.width-auto {
+    width: auto;
+}
