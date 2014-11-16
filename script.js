@@ -31,6 +31,12 @@ $(document).ready(function(){
         var b = a.replace('<br />','\n');
         $(this).attr('title', b);
     });
+
+    // toggle main bar
+    $('.toggle-main-bar').click(function() {
+        $('#mainBar').toggleClass('narrow');
+        $('#top-bar, #wrapper').toggleClass('wide');
+    })
     
     $('#wrapper').on( 'keyup', 'textarea', function (){ 
         $(this).height( 50 );

@@ -5,7 +5,6 @@
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
         <title>University Sync</title>
         <!-- <link href="bootstrap.css" rel="stylesheet" type="text/css" media="screen" />     -->
-        <link href="style.css" rel="stylesheet" type="text/css" media="screen" />
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
         <script type="text/javascript" src="http://code.jquery.com/color/jquery.color-2.1.2.js"></script>
         <script src="./tinymce/tinymce.min.js"></script>
@@ -25,7 +24,7 @@
                 fullpage_default_encoding: "UTF-8",
                 entity_encoding: "UTF-8",
                 body_id: "tinymce",
-                height: "400px",
+                height: "200px",
                 content_css : "./style.css",
                 plugins: 'link image code',
             });    
@@ -118,6 +117,8 @@
         <script type="text/javascript" src="./fancybox/jquery.fancybox-1.3.4.pack.js"></script>
         <script type="text/javascript" src="./fancybox/jquery.fancybox-1.3.4.js"></script>
         <link rel="stylesheet" type="text/css" href="./fancybox/jquery.fancybox-1.3.4.css" media="screen" />
+        <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,700' rel='stylesheet' type='text/css' />
+        <link href="style.css" rel="stylesheet" type="text/css" media="screen" />
 	<link rel="shortcut icon" href="images/favicon_16px.ico"> 
         
     </head>

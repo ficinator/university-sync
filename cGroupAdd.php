@@ -8,7 +8,7 @@ class cGroupAdd extends cPage {
         $strRet = "";
         $strRet .= "<input type=\"text\" class=\"groupAddName\" name=\"name\" required ";
         if($name == null) {
-            $strRet .= "placeholder=\"napr. Katedra histórie\">";
+            $strRet .= "placeholder=\"Názov skupiny\">";
         } else {
             $strRet .= "value=\"{$name}\">";
         }
@@ -55,7 +55,7 @@ class cGroupAdd extends cPage {
         $strRet = "";
         $strRet .= "<textarea class=\"tinymce\" name=\"info\" ";
         $strRet .= ($info == null ? "placeholder=\"info\">" : ">{$info}");
-        $strRet .= "</textarea><br>";
+        $strRet .= "</textarea>";
         return $strRet;
     }
     
@@ -70,27 +70,27 @@ class cGroupAdd extends cPage {
     public function getContent() {
         $strRet = "";
         $strRet .= "<div id=\"groupAdd\">";
-        $strRet .= "<h2>Vytvorenie novej skupiny</h2><br>";
+        $strRet .= "<h2 class=\"title\">Vytvorenie novej skupiny</h2>";
         $strRet .= "<form action=\"?page=action&type=groupAdd&idUser={$this->user['id']}\" method=\"post\">";
         $strRet .= "<ul>";
-        $strRet .= "<li><label>Názov skupiny:</label>{$this->setName(null)}</li>";
-        /*$strRet .= "<li>";
-        $strRet .= "<label>Druh skupiny:</label>";
-        $strRet .= "<input type=\"radio\" name=\"type\" value=\"university\" checked class=\"groupAddType\">akademická";
-        $strRet .= "<input type=\"radio\" name=\"type\" value=\"interest\" class=\"groupAddType\">záujmová";
-        $strRet .=" </li>";*/
-        $strRet .= "<li>";
-        $strRet .= "<label>Prístupnosť:</label><input type=\"radio\" name=\"privacy\" value=\"0\" class=\"groupAddPrivacy\">zatvorená skupina";
-        $strRet .= "<input type=\"radio\" name=\"privacy\" checked value=\"1\" class=\"groupAddPrivacy\">otvorená skupina";
-        $strRet .= "<img id=\"helpHint\" title=\"Otvorená skupina - nečlenovia skupiny vidia majú prístup k poznámkam<br>Zatvorená skupina - nečlenovia skupiny nemajú prístup k obsahu skupiny\" src=\"./images/question.png\">";
-        $strRet .= "</li>";
-        $strRet .= "<li><label>Univerzita (alebo vysoká škola):</label>{$this->setUniversity(null)}</li>";
+        $strRet .= "<li>{$this->setName(null)}</li>";
+        // $strRet .= "<li>";
+        // $strRet .= "<label>Druh skupiny:</label>";
+        // $strRet .= "<input type=\"radio\" name=\"type\" value=\"university\" checked class=\"groupAddType\">akademická";
+        // $strRet .= "<input type=\"radio\" name=\"type\" value=\"interest\" class=\"groupAddType\">záujmová";
+        // $strRet .=" </li>";
+        // $strRet .= "<li>";
+        // $strRet .= "<label>Prístupnosť:</label><input type=\"radio\" name=\"privacy\" value=\"0\" class=\"groupAddPrivacy\">zatvorená skupina";
+        // $strRet .= "<input type=\"radio\" name=\"privacy\" checked value=\"1\" class=\"groupAddPrivacy\">otvorená skupina";
+        // $strRet .= "<img id=\"helpHint\" title=\"Otvorená skupina - nečlenovia skupiny vidia majú prístup k poznámkam<br>Zatvorená skupina - nečlenovia skupiny nemajú prístup k obsahu skupiny\" src=\"./images/question.png\">";
+        // $strRet .= "</li>";
+        $strRet .= "<li>{$this->setUniversity(null)}</li>";
         $strRet .= "<li><div id=\"faculty\"></div></li>";  
-        $strRet .= "<li><label>Informácie o skupine:</label></li>{$this->setInfoGroup(null)}";  
-        $strRet .= "<li><label>Informácie pre záujemcov o členstvo v skupine:</label></li>";
-        $strRet .= $this->setInfoMemberGroup(null);
+        $strRet .= "<li class=\"divider\"><label>Informácie o skupine</label></li>{$this->setInfoGroup(null)}";  
+        //$strRet .= "<li><label>Informácie pre záujemcov o členstvo v skupine:</label></li>";
+        // $strRet .= $this->setInfoMemberGroup(null);
+        $strRet .= "<li class=\"submit\"><input type=\"submit\" value=\"Vytvoriť\" /></li>"; 
         $strRet .= "</ul>";  
-        $strRet .= "<button type=\"submit\" class=\"btn btn-lg btn-success\">Vytvoriť</button>"; 
         $strRet .= "</form>";
         $strRet .= "</div>";
         return $strRet;

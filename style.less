@@ -2,24 +2,24 @@
  * Colors
  */
 @dark:	#444444;
+@lightDark: lighten(@dark, 5%);
 @alphaGray: fadeout(@dark, 60%);
 @alphaDark:	fadeout(@dark, 20%);
 
 @white:	#ffffff;
 @lightGray: darken(@white, 10%);
+@textLightSecondary: fadeout(@white, 30%);
 
 @red:	#da4a38;
-
-@blue:		#4585f3;
-@lightBlue:	lighten(@blue, 10%);
-@darkBlue:	darken(@blue, 10%);
-
+@blue:	#4585f3;
 @green:	#53a93f;
 
 /**
  * Dimensions
  */
 @marginP:		10px;
+@marginHuge:	30px;
+@marginBig:		20px;
 @marginMedium:	10px;
 @marginSmall:	8px;
 @marginTiny:	4px;
@@ -33,8 +33,12 @@
 @lineHeightBig:		32px;
 @checkInputHeight:	28px;
 
+@arrowSizeMedium:	16px;
 @arrowSizeSmall:	8px;
 @arrowSizeTiny:		4px;
+
+@avatarSizeSmall:	32px;
+@avatarSizeBig:		100px;
 
 /**
  * Fonts
@@ -46,18 +50,59 @@
 @fontTiny: 		80%;
 
 @fontLight: 300;
+@fontBold:	700;
 
 /**
  * Transitions
  */
  @transDuration: .3s;
 
+.TransColor(@duration: @transDuration) {
+    -webkit-transition: color @duration;
+    -moz-transition: color @duration;
+    transition: color @duration;
+}
 
-.TransBgColor {
-    -webkit-transition: background-color @transDuration;
-    -moz-transition: background-color @transDuration;
-    -o-transition: background-color @transDuration;
-    transition: background-color @transDuration;
+.TransBgColor(@duration: @transDuration) {
+    -webkit-transition: background-color @duration;
+    -moz-transition: background-color @duration;
+    transition: background-color @duration;
+}
+
+.TransOpacity(@duration: @transDuration) {
+    -webkit-transition: opacity @duration;
+    -moz-transition: opacity @duration;
+    transition: opacity @duration;
+}
+
+.TransVisibility(@duration: @transDuration) {
+    -webkit-transition: visibility @duration, opacity @duration;
+    -moz-transition: visibility @duration, opacity @duration;
+    transition: visibility @duration, opacity @duration;
+}
+
+.TransWidth(@duration: @transDuration) {
+    -webkit-transition: width @duration;
+    -moz-transition: width @duration;
+    transition: width @duration;
+}
+
+.TransLeft(@duration: @transDuration) {
+    -webkit-transition: left @duration;
+    -moz-transition: left @duration;
+    transition: left @duration;
+}
+
+.TransMarginLeft(@duration: @transDuration) {
+    -webkit-transition: margin-left @duration;
+    -moz-transition: margin-left @duration;
+    transition: margin-left @duration;
+}
+
+.TransWidthBgColor(@duration: @transDuration) {
+    -webkit-transition: background-color @duration, width @duration;
+    -moz-transition: background-color @duration, width @duration;
+    transition: background-color @duration, width @duration;
 }
 
 /**
@@ -82,6 +127,12 @@
     border-left-color: transparent;
     border-bottom-color: transparent;
 }
+.ArrowLeft(@size, @color) {
+	.Arrow(@size, @color);
+    border-top-color: transparent;
+    border-left-color: transparent;
+    border-bottom-color: transparent;
+}
 
 /**
  * Borders
@@ -89,11 +140,29 @@
 @borderInput:		1px solid @alphaGray;
 @borderInputErr:	1px solid @red;
 
+/**
+ * Buttons
+ */
+ .Button(@bg) {
+ 	color: @white;
+	background: @bg;
+	cursor: pointer;
+	.TransBgColor;
+
+	&:hover {
+		text-decoration: none;
+		background-color: lighten(@bg, 5%);
+	}
+	&:active {
+		background-color: darken(@bg, 5%);
+	}
+}
+
 html, body, div,
 h1, h2, h3, h4, h5, h6,
 p, ul, li, a,
 table, tbody, thead, tr, th, td,
-form, input, button {
+form, input, button, select, textarea {
     margin: 0;
     padding: 0;
     border: 0;
@@ -110,9 +179,14 @@ body {
     background: @lightGray;
 }
 
+body.mce-content-body {
+	background: none;
+}
+
 a {
     color: inherit;
     text-decoration: none;
+    .TransColor;
 }
 
 a:hover {
@@ -147,26 +221,195 @@ h3 {
  @mainBarWidth: 300px;
  @rightColWidth: 300px;
  @topBarHeight:	50px;
+ @addGroupWidth: 160px;
+ @groupThumbHeight: 50px;
 
 #mainBar {
     position: fixed;
+    z-index: 1;
     top: 0;
     width: @mainBarWidth;
     height: 100%;
     background: @white;
     background: @dark;
+    .TransWidth;
 
-    & > a.title {
+    .main-title {
     	display: block;
     	height: @topBarHeight;
     	background: @red;
+
+    	.main-logo:hover {
+    		text-decoration: none;
+    	}
+    }
+
+    .toggle-main-bar {
+        width: @topBarHeight;
+        height: @topBarHeight;
+        float: right;
+        opacity: .7;
+        background: url(images/ic_prev_white_16px.png) no-repeat center;
+        .TransOpacity;
+        cursor: pointer;
+
+        &:hover {
+            opacity: 1;
+        }
+    }
+
+    #myGroups {
+    	#myGroupsTitle {
+    		font-weight: @fontLight;
+            line-height: 40px;
+    		padding-left: @paddingMedium;
+            background: darken(@dark, 10%);
+            overflow: hidden;
+            white-space: nowrap;
+
+    		.groupAdd {
+                position: absolute;
+                right: 0;
+    			font-size: 0;
+    			width: 40px;
+    			height: 40px;
+    			background: url(images/ic_new_white_16px.png) no-repeat darken(@dark, 10%);
+                background-position: @marginMedium center;
+                padding-left: @paddingHuge + @paddingTiny;
+                overflow: hidden;
+                white-space: nowrap;
+                .TransWidthBgColor;
+
+                &:hover {
+                    width: @addGroupWidth;
+                    font-size: inherit;
+                    background-color: @green;
+                    text-decoration: none;
+                }
+    		}
+    	}
+
+    	.group-thumb {
+    		position: relative;
+    		display: block;
+    		height: @groupThumbHeight;
+            overflow: hidden;
+            white-space: nowrap;
+            // border-bottom: 1px solid fadeout(@white, 80%);
+    		.TransBgColor;
+
+    		.thumb {
+    			width: 32px;
+    			height: 32px;
+    			margin: 9px;
+    			float: left;
+    		}
+
+    		.details {
+    			padding: @paddingTiny @paddingHuge @paddingTiny 0;
+    			margin-left: @groupThumbHeight;
+
+    			.name {
+    				font-weight: @fontBold;
+    			}
+
+    			.university,
+    			.faculty {
+    				color: @textLightSecondary;
+    				font-size: @fontTiny;
+    				.TransColor;
+    			}
+
+    			.faculty:before {
+    				content: ' • ';
+    			}
+    		}
+
+    		&.active:after {
+    			.ArrowLeft(@arrowSizeMedium, @lightGray);
+    			right: 0;
+    			top: 50%;
+    			margin-top: -@arrowSizeMedium;
+    		}
+
+    		&:hover {
+    			background-color: @lightDark;
+    			text-decoration: none;
+
+    			.details {
+    				.university,
+    				.faculty {
+    					color: @white;
+    				}
+    			}
+    		}
+    	}
+    }
+
+    &.narrow {
+        width: @topBarHeight;
+
+        .toggle-main-bar {
+            opacity: 1;
+            background-image: url(images/logo_white_32px.png);
+
+            &:hover {
+                background-image: url(images/ic_next_white_16px.png);
+            }
+        }
+
+        .main-logo {
+            display: none;
+        }
+
+        .control-panel {
+             font-size: 0;
+        //     width: @topBarHeight;
+        //     background-color: @dark;
+        //     .TransWidth;
+
+             #myGroups {
+                 #myGroupsTitle {
+                     padding-left: 0;
+
+                     .groupAdd {
+                         width: @topBarHeight;
+                         padding-left: @topBarHeight;
+                         background-position: center;
+                     }
+                 }
+             }
+
+        //     &:hover {
+        //         position: absolute;
+        //         font-size: inherit;
+        //         width: 300px;
+
+        //         #myGroups {
+        //             #myGroupsTitle {
+        //                 padding-left: @paddingMedium;
+
+        //                 .groupAdd {
+        //                     width: 40px;
+        //                     padding-left: @paddingHuge + @paddingTiny;
+        //                     background-position: @marginMedium center;
+
+        //                     &:hover {
+        //                         width: @addGroupWidth;
+        //                     }
+        //                 }
+        //             }
+        //         }
+        //     }
+        }
     }
 }
 
 /**
  * Top Bar
  */
- @mainTitleWidth:	300px;
+ @mainTitleWidth:	240px;
+ @loginBarWidth:	72px;
 
 #top-bar {
     position: fixed;
@@ -176,23 +419,12 @@ h3 {
     height: @topBarHeight;
     background: @red;
     z-index: 1;
-
-    &.not-logged-in {
-		left: 0;
-
-		.main-title {
-		    width: @mainTitleWidth;
-		    margin: 0 auto;
-
-		    &:before {
-		    	margin-left: 0;
-		    }
-		}
-    }
+    .TransLeft;
 
     #mainSearch {
     	padding: 9px @paddingMedium;
     	max-width: 800px;
+    	margin-right: @loginBarWidth;
 
     	form {
     		position: relative;
@@ -243,9 +475,10 @@ h3 {
     #loginBar {
 		position: relative;
 		float: right;
-		margin-right: @rightColWidth + @marginMedium;
+		.TransBgColor;
 
-		.avatar {
+		& > .avatar {
+			display: block;
 			position: relative;
 			padding: 9px @paddingHuge 9px @paddingMedium;
 
@@ -253,40 +486,157 @@ h3 {
 				.ArrowDown(@arrowSizeTiny, @white);
 				top: 50%;
 				right: 0;
-				margin-right: @marginMedium + @marginTiny;
+				margin: -(@arrowSizeTiny / 2) @marginMedium + @marginTiny 0 0;
+			}
+
+			img {
+				width: 32px;
+				height: 32px;
+				border-radius: 100%;
 			}
 		}
 
 		#user-menu {
 			position: absolute;
-			display: none;	
+			visibility: hidden;
+			opacity: 0;
 			right: 0;
 			white-space: nowrap;
-			padding: @paddingMedium @paddingBig;
+			padding: @paddingMedium;
 			background: @dark;
+			color: @white;
+			min-width: 360px;
+			.TransVisibility;
+
+			td {
+				//vertical-align: top;
+			}
+
+			a.avatar {
+				display: block;
+				float: left;
+				margin-right: @marginMedium;
+
+				img {
+					width: @avatarSizeBig;
+					height: @avatarSizeBig;
+					// border: @paddingTiny solid @white;
+				}
+			}
+
+			.details {
+				display: block;
+				margin: 0 @marginMedium @marginMedium @marginMedium + @avatarSizeBig;
+
+				.name {
+					font-weight: bold;
+				}
+
+				.university,
+				.faculty {
+					color: @textLightSecondary;
+					.TransColor;
+				}
+
+				.university {
+					font-size: @fontSmall;
+				}
+
+				.faculty {
+					font-size: @fontTiny;
+				}
+
+				&:hover {
+					text-decoration: none;
+					.university,
+					.faculty {
+						color: @white;
+					}
+				}
+			}
+
+			.actions {
+                .settings,
+                .logout {
+                    float: right;
+                    width: 30px;
+                    height: 30px;
+                    font-size: 0;
+                    line-height: 30px;
+                    background-repeat: no-repeat;
+                    background-position: @paddingSmall center;
+                    overflow: hidden;
+                    padding-left: @paddingHuge;
+                    .TransWidthBgColor;
+
+                    &:hover {
+                        font-size: inherit;
+                        text-decoration: none;
+                    }
+                }
+
+				.settings {
+					background-image: url(images/ic_settings_white_16px.png);
+
+                    &:hover {
+                        background-color: @blue;
+                        width: 120px;
+                    }
+				}
+
+				.logout {
+                    margin-right: @marginMedium;
+                    background-image: url(images/ic_logout_white_16px.png);
+
+                    &:hover {
+                        background-color: @red;
+                        width: 120px;
+                    }
+				}
+			}
 		}
 
 		&:hover {
 			background-color: @dark;
 
-			.avatar:after {
+			& > .avatar:after {
 				.ArrowUp(@arrowSizeTiny, @white);
-				margin-top: -@arrowSizeTiny;
+				margin-top: -@arrowSizeTiny * 2;
 			}
 
 			#user-menu {
-				display: block;
+				visibility: visible;
+				opacity: 1;
 			}
 		}
     }
+
+    &.not-logged-in {
+        left: 0;
+
+        h1 {
+            width: @mainTitleWidth;
+            margin: 0 auto;
+
+            &:before {
+                margin-left: 0;
+            }
+        }
+    }
+
+    &.wide {
+        left: @topBarHeight;
+    }
 }
 
-#mainBar .main-title,
-#top-bar .main-title {
+#mainBar .main-logo h1,
+.not-logged-in h1 {
     line-height: @topBarHeight;
     text-transform: uppercase;
     color: @white;
     font-weight: @fontLight;
+    overflow: hidden;
+    white-space: nowrap;
 
     &:before {
 	    float: left;
@@ -307,15 +657,25 @@ h3 {
 /**
  * Wrapper
  */
-@wrapperWidth: 400px;
+@wrapperWidth: 420px;
+
 #wrapper {
     padding-top: 50px;
-    margin: 10px 0 0 @mainBarWidth + @marginMedium;
+    margin-left: @mainBarWidth;
+    //.TransMarginLeft;
 
     &.not-logged-in {
 	    max-width: @wrapperWidth;
 	    margin: 0 auto;
     }
+
+    &.wide {
+        margin-left: @topBarHeight;
+    }
+}
+
+#content {
+	margin: 0 @marginMedium;
 }
 
 /**
@@ -362,17 +722,8 @@ h3 {
     		margin: 0 6px;
 		}
 		&[type=submit] {
-		    color: @white;
-		    background: @blue;
+			.Button(@blue);
 		    padding: @paddingMedium @paddingBig;
-		    cursor: pointer;
-
-		    &:hover {
-			    background: @lightBlue;
-		    }
-		    &:active {
-			    background: @darkBlue;
-		    }
 		}
 
 	    &.ok-input,
@@ -384,7 +735,7 @@ h3 {
     		background-image: url(images/ic_success_20px.png);
 	    }
 		&.err-input {
-		    background-image: url(images/ic_error_20px.png);
+		    background-image: url(images/ic_warning_20px.png);
 		    border: @borderInputErr;
 		}
 
@@ -394,7 +745,7 @@ h3 {
 		font-size: @fontBig;
 
 		label {
-			margin-right: marginMedium;
+			margin-right: @marginMedium;
 		}
 	}
 
@@ -431,26 +782,75 @@ h3 {
 	}
 }
 
-@media (min-width: 720px) {
-    .changeGroupLine {
-        position: relative;
-        padding: 10px;
-        padding-left: 13px;
-        width: 300px;
-    }
-    #changeGroup {
-        min-height: 60px;
-        overflow-y: auto;
-        overflow-x: hidden;
-    }
-    #myGroups {
-        // background-color: #72888c;
-        min-height: 120px;
-        width: 100%;
-        overflow-y: auto;
-        color: #fff;
-    }
+#groupAdd {
+	margin: 0 auto;
+	background: @white;
+	margin: @marginMedium auto;
+	max-width: 800px;
+
+	.title {
+		font-weight: @fontLight;
+		padding: @paddingHuge @paddingHuge 0 @paddingHuge;
+	}
+
+	form {
+		padding: @paddingHuge;
+
+		li {
+			margin-bottom: @marginMedium;
+
+			&.divider {
+				padding-top: @paddingBig;
+				margin: @marginBig 0 @marginTiny 0;
+				border-top: @borderInput;
+			}
+
+			&.submit {
+				margin: @marginMedium 0 0 0;
+				text-align: right;
+			}
+		}
+
+		input[type=text],
+		select {
+			padding: @paddingTiny;
+			border: @borderInput;
+			width: 100%;
+		}
+
+		input[type=text] {
+			padding-left: @paddingSmall;
+		}
+
+		input[type=submit] {
+			.Button(@blue);
+			padding: @paddingMedium @paddingBig;
+			font-size: @fontBig;
+		}
+	}
 }
+
+
+// @media (min-width: 720px) {
+//     .changeGroupLine {
+//         position: relative;
+//         padding: 10px;
+//         padding-left: 13px;
+//         width: 300px;
+//     }
+//     #changeGroup {
+//         min-height: 60px;
+//         overflow-y: auto;
+//         overflow-x: hidden;
+//     }
+//     #myGroups {
+//         // background-color: #72888c;
+//         // min-height: 120px;
+//         // width: 100%;
+//         // overflow-y: auto;
+//         // color: #fff;
+//     }
+// }
 
 .hidden {
     display: none !important;
@@ -504,11 +904,6 @@ h3 {
     color: #333;
     margin-left: 100px;
     bottom: 10px;
-}
-
-
-a {
-    color: #208e8d;
 }
   
 .editUserInfo {   
@@ -1218,7 +1613,7 @@ td.tableSubject div {
 
 #myGroupsTitle {
     // background-color: #272F31;
-    padding: 15px;
+    // padding: 15px;
 }
 
 .white {
@@ -1505,10 +1900,7 @@ textarea  {
 .right {
     float: right;
 }
-
-.logout {
-    margin-top: 5px;   
-}    
+ 
 
 .userName:hover {
     text-decoration: none;
@@ -1589,59 +1981,55 @@ textarea  {
 #userInfo h3 {
 }
 
-#groupAdd  {
-    padding: 10px;
-    width: 800px;
-    margin-top: 10px;
-}
+// #groupAdd  {
+//     padding: 10px;
+//     width: 800px;
+//     margin-top: 10px;
+// }
 
-#groupAddInfo, #groupAddInfoRegistration  {
-    margin-top: 10px;
-    padding: 10px;
-}
+// #groupAddInfo, #groupAddInfoRegistration  {
+//     margin-top: 10px;
+//     padding: 10px;
+// }
 
-#groupAddInfo {
-    position: relative;
-    top: -90px;
-}
+// #groupAddInfo {
+//     position: relative;
+//     top: -90px;
+// }
 
-#groupAddInfoRegistration {
-    position: relative;
-    top: -110px;
-}
+// #groupAddInfoRegistration {
+//     position: relative;
+//     top: -110px;
+// }
 
-#groupAdd ul, #groupAddInfo ul, #groupAddInfoRegistration ul {
-    list-style-type: none;
-} 
+// #groupAdd ul, #groupAddInfo ul, #groupAddInfoRegistration ul {
+//     list-style-type: none;
+// } 
 
-#groupAdd li, #groupAddInfo li, #groupAddInfoRegistration li {
-    margin: 10px;
-}
+// #groupAdd li, #groupAddInfo li, #groupAddInfoRegistration li {
+//     margin: 10px;
+// }
 
-#groupAdd li img {
-    float: right;
-    margin-right: 100px;
-}
+// #groupAdd li img {
+//     float: right;
+//     margin-right: 100px;
+// }
 
-#groupAdd label {
-    width: 200px;
-}
+// #groupAdd label {
+//     width: 200px;
+// }
 
-#myGroupsTitle a {
-    color: black;
-}
+// .groupAddName {
+//     width: 250px;
+// }
 
-.groupAddName {
-    width: 250px;
-}
+// .groupAddPrivacy, .groupAddType {
+//     width: 50px;
+// }
 
-.groupAddPrivacy, .groupAddType {
-    width: 50px;
-}
-
-#groupAdd select {
-    width: 250px;
-}
+// #groupAdd select {
+//     width: 250px;
+// }
 
 #FAchanger {
     margin-bottom: 10px;
@@ -2080,10 +2468,10 @@ textarea  {
     cursor: pointer;
 }     
 
-.active  {
-    padding: 15px 20px 10px 20px;
-    background-color:  #fff;
-} 
+// .active  {
+//     padding: 15px 20px 10px 20px;
+//     background-color:  #fff;
+// } 
 
 .active:hover {
     background-color: #fff;
@@ -2315,17 +2703,8 @@ textarea  {
 } 
 
 #groupPhoto img, #userPhoto img {
-    height: 90px;
+    height: 100px;
     float: left;
-}
-
-
-#userPhoto  {
-    position: relative;
- } 
- 
- #groupPhoto {
-    
 }
  
 .transparent {
@@ -2348,34 +2727,6 @@ textarea  {
     margin-top: 5px;
     vertical-align: middle;
 } 
-
- 
-    
-#regUser  {
-    margin: 0 auto;
-    min-width: 400px;
-    margin-top: 10px;
-} 
-
-#regUser li {
-    height: 35px;
-}
-
-#regUser li:active {
-    box-shadow: 1px solid #ccc;
-}
-
-#regUser h2 {
-    letter-spacing: 2px;
-}
-
-#regUser ul {
-    list-style-type: none; 
-} 
-
-.label-reg-user {    
-    width: 200px;    
-}    
     
 #opening {
     min-height: 400px;

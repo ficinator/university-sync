@@ -17,7 +17,8 @@
         
         public function getUser() {
             if (isset($_SESSION['login'])) {
-                $sql = "SELECT * FROM user WHERE user.email='".$_SESSION['login']."'";
+                $sql = "SELECT u.id, u.name, surname, email, university, info, rank, sex, f.name AS faculty"
+                    . " FROM user AS u JOIN faculty AS f ON u.id_faculty=f.id WHERE u.email='".$_SESSION['login']."'";
                 $result = mysql_query($sql);
                 $user = mysql_fetch_array($result);
                 return $user;

@@ -768,24 +768,32 @@ class cAction {
 	
 	public function groupAdd() {
 		if (isset($_SESSION['login']) && isset ($_POST)) {
-			$sql = "INSERT INTO `web1`.`group` "                    // Vytvorenie skupiny
-					. "(`id`,"
-					. "`name`,"
+			// $sql = "INSERT INTO `group` "                    // Vytvorenie skupiny
+			// 		. "(`id`,"
+			// 		. "`name`,"
+			// 		. "`university`,"
+			// 		. "`public`,"
+			// 		. "`member_info`,"
+			// 		. "`faculty`,"
+			// 		. "`info`) VALUES "
+			// 		. "(NULL, "
+			// 		. "'{$_POST['name']}',"
+			// 		. "'{$_POST['university']}',"
+			// 		. "'{$_POST['privacy']}',"
+			// 		. "'{$_POST['member_info']}',"
+			// 		. "'{$_POST['faculty']}',";
+			$sql = "INSERT INTO `group` "                    // Vytvorenie skupiny
+					. "(`name`,"
 					. "`university`,"
-					. "`public`,"
-					. "`member_info`,"
 					. "`faculty`,"
 					. "`info`) VALUES "
-					. "(NULL, "
-					. "'{$_POST['name']}',"
+					. "('{$_POST['name']}',"
 					. "'{$_POST['university']}',"
-					. "'{$_POST['privacy']}',"
-					. "'{$_POST['member_info']}',"
 					. "'{$_POST['faculty']}',";
 			$sql .= (isset ($_POST['info']) ? "'{$_POST['info']}');" : "NULL);");
 			$result = mysql_query($sql);
 		 
-			$row = mysql_fetch_row(mysql_query("SELECT max(id) FROM `web1`.`group`"));
+			$row = mysql_fetch_row(mysql_query("SELECT max(id) FROM `group`"));
 			$idGroup = $row[0];                            // Ziskanie ID skupiny
 
 			$sql2 = "INSERT INTO `member` "                   // vytvorenie Admina
@@ -804,16 +812,16 @@ class cAction {
 				mkdir('./groups/notes/', 0777, true);
 			}
 			
-			$sqlFolder = "INSERT INTO `folder` 
-						  (`id`, `id_user`, `id_group`, `name`, `info`, `public`,  `date`) VALUES 
-						  (NULL, '{$this->uniSyncUserId}', '{$idGroup}', 'Rôzne', 'Všetky články bez zložky', '1', NOW())";
-			$result3 = mysql_query($sqlFolder);
-			$row = mysql_fetch_row(mysql_query("SELECT max(id) FROM `web1`.`folder`"));
-			$idFolder = $row[0];                            // Ziskanie ID skupiny
-			$path = './groups/'.$idGroup.'/articles/'.$idFolder.'/';
-			if(!is_dir($path)) {
-				mkdir($path, 0777, true);
-			}
+			// $sqlFolder = "INSERT INTO `folder` 
+			// 			  (`id`, `id_user`, `id_group`, `name`, `info`, `public`,  `date`) VALUES 
+			// 			  (NULL, '{$this->uniSyncUserId}', '{$idGroup}', 'Rôzne', 'Všetky články bez zložky', '1', NOW())";
+			// $result3 = mysql_query($sqlFolder);
+			// $row = mysql_fetch_row(mysql_query("SELECT max(id) FROM `web1`.`folder`"));
+			// $idFolder = $row[0];                            // Ziskanie ID skupiny
+			// $path = './groups/'.$idGroup.'/articles/'.$idFolder.'/';
+			// if(!is_dir($path)) {
+			// 	mkdir($path, 0777, true);
+			// }
 			
 			$sqlc = "INSERT INTO `category` 
 						  (`id`, `id_user`, `id_group`, `name`, `date`) VALUES 
